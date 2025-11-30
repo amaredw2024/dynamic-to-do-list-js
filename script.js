@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // Wait for the DOM to fully load
 document.addEventListener('DOMContentLoaded', function () {
 
@@ -71,4 +72,58 @@ document.addEventListener('DOMContentLoaded', function () {
     // Step 4: Load tasks on page load
     loadTasks();
 
+=======
+// Ensure the DOM is fully loaded before running any code
+document.addEventListener('DOMContentLoaded', () => {
+    // Step 1: Select DOM elements
+    const addButton = document.getElementById('add-task-btn'); // Add Task button
+    const taskInput = document.getElementById('task-input');   // Input field for tasks
+    const taskList = document.getElementById('task-list');     // UL element for tasks
+
+    // Step 2: Function to add a new task
+    function addTask() {
+        // Get the trimmed input value
+        const taskText = taskInput.value.trim();
+
+        // Check if input is empty
+        if (taskText === '') {
+            alert('Please enter a task!');
+            return;
+        }
+
+        // Create a new list item for the task
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        // Create a remove button
+        const removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.className = 'remove-btn';
+
+        // Attach click event to remove the task
+        removeButton.onclick = () => {
+            taskList.removeChild(li);
+        };
+
+        // Append remove button to the li, then li to the task list
+        li.appendChild(removeButton);
+        taskList.appendChild(li);
+
+        // Clear the input field after adding the task
+        taskInput.value = '';
+    }
+
+    // Step 3: Attach event listener to the Add Task button
+    addButton.addEventListener('click', addTask);
+
+    // Step 4: Allow adding tasks by pressing "Enter"
+    taskInput.addEventListener('keypress', (event) => {
+        if (event.key === 'Enter') {
+            addTask();
+        }
+    });
+
+    // Optional: Focus the input field when page loads
+    taskInput.focus();
+>>>>>>> 9c73ac1 (my commit)
 });
